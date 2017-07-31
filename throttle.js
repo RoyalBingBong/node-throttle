@@ -107,7 +107,7 @@ Throttle.prototype._onchunk = function (output, done) {
     } else {
       if(this.bps == 0) {
         let interval = setInterval(() => {
-          if(this.bps > 0) {
+          if(this.bps != 0) {
             clearInterval(interval)
             d()
           }
