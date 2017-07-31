@@ -99,8 +99,9 @@ Throttle.prototype._onchunk = function (output, done) {
 
   if (this.totalBytes > expected) {
     // Use this byte count to calculate how many seconds ahead we are.
-    var remainder = this.totalBytes - expected;
+    
     if(this.bps > 0) {
+      var remainder = this.totalBytes - expected;
       var sleepTime = remainder / this.bps * 1000;
       setTimeout(d, sleepTime)
     } else {
@@ -114,13 +115,6 @@ Throttle.prototype._onchunk = function (output, done) {
       } else {
         d()
       }
-    }
-    
-    //console.error('sleep time: %d', sleepTime);
-    if (sleepTime > 0) {
-      setTimeout(d, sleepTime);
-    } else {
-      d();
     }
   } else {
     d();
